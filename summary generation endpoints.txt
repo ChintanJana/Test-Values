@@ -1,0 +1,61 @@
+1. summary generator
+request
+{
+  "company_id": "5eb7cf5a86d9755df3a6c593",
+  "facility_id": "5eb7cf5a86d9755df3a6c594",
+  "asset_id": "5eb7cf5a86d9755df3a6c595",
+  "user_id": "5eb7cf5a86d9755df3a6c596",
+  "service_name": "asset-summary_openai_gpt-3.5-turbo",
+  "original_text": "- Unique Insights comma Separated: Supply Air Fan Speed- 100%, Supply Air Flow -6.5, Extract Air Fan Speed - 98%, Supply Air Fan Speed FDS - 80%, Extract Fan Speed FDS-75%, Extract Air Flow -7.8, Extract Air Flow FDS- 9.8\n- Unique Alerts Comma Seperated: Only 1 of the Supply Air Fan is working, Extract Air Fan is doing more work than expected,  Supply air temperature is much high as compared to the set point, Heating coil is opening more than expected, Supply Air Fan is hunting, decrease in supply air pressure over the last 1 month\n- Last 3M maintenance conducted 3 weeks back, 12M maintenance is due in the next 5 weeks\n- Feedback from Technician: Fan Belts on Supply Fan B might need changing, overall drive belt system needs overhauling.\n- Status on Work Orders (WO): WO for Supply Air Fan is Pending, WO for Heating Coil is also pending. Both WO have been in pending state since a month.",
+  
+  "variables": {
+    "system_type": "HVAC",
+    "asset_class": "HVAC System",
+    "role": "HVAC operator"
+  }
+}
+
+response
+{
+  "company_id": "5eb7cf5a86d9755df3a6c593",
+  "facility_id": "5eb7cf5a86d9755df3a6c594",
+  "asset_id": "5eb7cf5a86d9755df3a6c595",
+  "user_id": "5eb7cf5a86d9755df3a6c595",
+  "service_name": "asset-summary_openai_gpt-3.5-turbo",
+  "summary_service_log_id": "6694c45935c5afad644221f4",
+  "summary": "Based on the data provided, here is a troubleshooting guide for the HVAC system:\n\n1. **Supply Air Fan Speed**: The supply air fan speed is at 100%, which is normal.\n2. **Supply Air Flow**: The supply air flow is at 6.5, which seems to be lower than expected.\n3. **Extract Air Fan Speed**: The extract air fan speed is at 98%, indicating it's working efficiently.\n4. **Supply Air Fan Speed FDS**: The supply air fan speed FDS is at 80%, slightly lower than normal.\n5. **Extract Fan Speed FDS**: The extract fan speed FDS is at 75%, also slightly lower than expected.\n6. **Extract Air Flow**: The extract air flow is at 7.8, within range but could be optimized.\n7. **Extract Air Flow FDS**: The extract air flow FDS is high at 9.8, indicating potential issues.\n\n**Troubleshooting Steps:**\n- Address the issue with only one of the supply air fans working promptly to ensure proper airflow distribution.\n- Investigate why the extract air fan is doing more work than expected and adjust as necessary to balance airflow.\n- Check and adjust heating coil settings as it may be opening more than required, leading to higher temperatures in the supply air compared to set point.\n- Address any hunting behavior of the Supply Air Fan promptly to prevent further issues with pressure and airflow control.\n\n**Maintenance Recommendations:**\n- Schedule maintenance for changing fan belts on Supply Fan B as suggested by feedback from technician and consider overhauling drive belt system for overall efficiency improvement.\n\n**Work Orders Status:**\n- Follow up on pending Work Orders for Supply Air Fan and Heating Coil that have been unresolved for a month to prevent any operational disruptions or inefficiencies.\n\nBy addressing these specific issues highlighted in the data provided, you can ensure optimal performance and efficiency of your HVAC system while preventing potential breakdowns or malfunctions in the future."
+}
+
+2. get summary process logs
+- request
+http://localhost:8080/api/v1/ai_summary/summary-process/6694c45935c5afad644221f4
+
+- response
+{
+  "company_id": "5eb7cf5a86d9755df3a6c593",
+  "facility_id": "5eb7cf5a86d9755df3a6c594",
+  "asset_id": "5eb7cf5a86d9755df3a6c595",
+  "service_name": "asset-summary_openai_gpt-3.5-turbo",
+  "masking_id": "6694c45335c5afad644221ef",
+  "llm_call_id": "6694c45935c5afad644221f1",
+  "unmasking_id": "6694c45935c5afad644221f2",
+  "transaction_id": "6694c45935c5afad644221f3",
+  "timestamp": "2024-07-15T06:36:07.106000"
+}
+
+3. get llm call logs
+- request
+http://localhost:8080/api/v1/ai_summary/llm-call/get/6694c45935c5afad644221f1
+
+- response
+{
+  "prompt": "Context:\nData provided is for HVAC and the asset is an HVAC System.You are expected to think like a HVAC operator and provide troubleshooting guide for quick and effective fix.\nNo response should be outside of the Data provided.\n\nInstruction\n-Output should be in text and conversational.\n\nData\n- Unique Insights comma Separated: Supply Air Fan Speed- 100%, Supply Air Flow -6.5, Extract Air Fan Speed - 98%, Supply Air Fan Speed FDS - 80%, Extract Fan Speed FDS-75%, Extract Air Flow -7.8, Extract Air Flow FDS- 9.8\n- Unique Alerts Comma Seperated: Only 1 of the Supply Air Fan is working, Extract Air Fan is doing more work than expected,  Supply air temperature is much high as compared to the set point, Heating coil is opening more than expected, Supply Air Fan is hunting, decrease in supply air pressure over the last 1 month\n- Last 3M maintenance conducted 3 weeks back, 12M maintenance is due in the next 5 weeks\n- Feedback from Technician: Fan Belts on Supply Fan B might need changing, overall drive belt system needs overhauling.\n- Status on Work Orders (WO): WO for Supply Air Fan is Pending, WO for Heating Coil is also pending. Both WO have been in pending state since a month.",
+  "parameters": {
+    "temperature": 0,
+    "top_p": 0,
+    "frequency_penalty": 1,
+    "presence_penalty": 0
+  },
+  "summary": "Based on the data provided, here is a troubleshooting guide for the HVAC system:\n\n1. **Supply Air Fan Speed**: The supply air fan speed is at 100%, which is normal.\n2. **Supply Air Flow**: The supply air flow is at 6.5, which seems to be lower than expected.\n3. **Extract Air Fan Speed**: The extract air fan speed is at 98%, indicating it's working efficiently.\n4. **Supply Air Fan Speed FDS**: The supply air fan speed FDS is at 80%, slightly lower than normal.\n5. **Extract Fan Speed FDS**: The extract fan speed FDS is at 75%, also slightly lower than expected.\n6. **Extract Air Flow**: The extract air flow is at 7.8, within range but could be optimized.\n7. **Extract Air Flow FDS**: The extract air flow FDS is high at 9.8, indicating potential issues.\n\n**Troubleshooting Steps:**\n- Address the issue with only one of the supply air fans working promptly to ensure proper airflow distribution.\n- Investigate why the extract air fan is doing more work than expected and adjust as necessary to balance airflow.\n- Check and adjust heating coil settings as it may be opening more than required, leading to higher temperatures in the supply air compared to set point.\n- Address any hunting behavior of the Supply Air Fan promptly to prevent further issues with pressure and airflow control.\n\n**Maintenance Recommendations:**\n- Schedule maintenance for changing fan belts on Supply Fan B as suggested by feedback from technician and consider overhauling drive belt system for overall efficiency improvement.\n\n**Work Orders Status:**\n- Follow up on pending Work Orders for Supply Air Fan and Heating Coil that have been unresolved for a month to prevent any operational disruptions or inefficiencies.\n\nBy addressing these specific issues highlighted in the data provided, you can ensure optimal performance and efficiency of your HVAC system while preventing potential breakdowns or malfunctions in the future.",
+  "timestamp": "2024-07-15T06:36:07.122000"
+}

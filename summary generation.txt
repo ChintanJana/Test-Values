@@ -35,19 +35,7 @@ create_prompt:
 
 {
   "service_id": "6683dd6252f213867f92eea3",
-  "structure": "Context:\n
-
-Data provided is for {system_type} and the asset is an {asset_class}.
-You are expected to think like a {role} and provide troubleshooting guide for quick and effective fix.\n
-No response should be outside of the Data provided.
-
-\n\n
-Instruction\n-
-Output should be in text and conversational.\n
-
-\nData\n
-
-{data}",
+  "structure": "Context:\nData provided is for {system_type} and the asset is an {asset_class}.You are expected to think like a {role} and provide troubleshooting guide for quick and effective fix.\nNo response should be outside of the Data provided.\n\nInstruction\n-Output should be in text and conversational.\n\nData\n{data}",
 
   "parameter": {
     "temperature": 0,
@@ -70,7 +58,7 @@ generate_summary:
   "original_text": "Getting 999 Error Code: Site data getting update on Solar.Web at intermittent days from March 2024. 2 Inverters (Primo 6.0-1 (1): 32763243, Primo 6.0-1 (2): 32763239 ) are there for the site.\n\n
 
 Perform the following steps to try and resolve this issue:\n
-1. On the inverter display, go to �Setup� -> �DATCOM� to check the DATCOM status. If it shows an error, you may need to address connectivity issues.\n
+1. On the inverter display, go to “Setup” -> “DATCOM” to check the DATCOM status. If it shows an error, you may need to address connectivity issues.\n
 2. Ensure your router and internet connection are stable. Restart your router and check if the connection between the inverter and Solar.web is re-established.\n
 3. If the system remains offline, de-energize the inverter (turn off AC and DC switches), wait a few minutes, and then turn it back on.\n
 4. Ensure that your inverter's firmware is up to date. If you recently updated settings or firmware, verify that all configurations are correct.\n
@@ -80,5 +68,38 @@ Perform the following steps to try and resolve this issue:\n
     "system_type": "HVAC",
     "asset_class": "HVAC System",
     "role": "HVAC operator"
+  }
+}
+
+
+create_prompt:
+{
+  "service_name": "PPMDQOPENAI",
+  "excluded_recognizer": ["DATE_TIME"],
+  "structure": "Context: In the Data you will get a question and response as part of the maintenance checklist for the {asset_class}t and it is a {month} maintenance schedule \n\n Ask: Analyse the response as a {role} to provide data quality assessment for each question. Reward of responses should be on the basis of \n\nClarity- \n\nreward when - response is clear in respect to question, provides clarity on action / steps taken, Penalise when - only mention done/ checked, no details made available, 0 Score- when the response is marked as done / checked and is not conclusive at all\n\nMeasurement \n\nReward when - Mention of measurements / units of measurements., Mention of variables and values get rewarded highest, else there is partial reward, Penalise when- When no mention of variables or measurements (numbers, units of measurement), \n\nKnowledge \n\n Reward when Description on the decision making background and the details of why something was done should be there for it to be rewarded, Penalise when - If the response does not provide any knowledge / learning / insights to improve reliability, 0 Score- when the response is marked as done / checked and is not conclusive at all. \n\nEach assessment criteria can have a max score of 1 and min score of 0 \n\nOutput: \n\n Json, question, score of each assessment criteria and a brief summary of the ways in which quality can be improved for each question. Keep it brief. \n\nData\n{data}",
+
+  "parameter": {
+    "temperature": 0,
+    "top_p": 0,
+    "frequency_penalty": 1,
+    "presence_penalty": 0
+  },
+  "llm_type": "OPENAI",
+  "model": "gpt-3.5-turbo",
+  "max_tokens": 500
+}
+
+generate_summary:
+{
+  "company_id": "5eb7cf5a86d9755df3a6c593",
+  "facility_id": "5eb7cf5a86d9755df3a6c593",
+  "asset_id": "5eb7cf5a86d9755df3a6c593",
+  "user_id": "5eb7cf5a86d9755df3a6c593",
+  "service_name": "PPMDQAPI",
+  "original_text": "[{“question”:”Clean or change the filter as needed”,”response”:”Done”},{“question:”Confirm CMR controller working”, ”response”:”Checked and working ok, confirmed that the air flow is as expected. Flow is 5 m3/s and the fan speed is 76%. No fluctuations seen and that confirms that the cmr controller is behaving as expected”},{“question”:”Clean the frost coil if needed”,“response”:”Done”}]",
+  "variables": {
+    "asset_class": "Air Handling Unit",
+    "month": "1M",
+    "role": "Reliability Engineer"
   }
 }

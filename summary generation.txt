@@ -97,7 +97,7 @@ generate_summary:
   "asset_id": "5eb7cf5a86d9755df3a6c593",
   "user_id": "5eb7cf5a86d9755df3a6c593",
   "service_name": "PPMDQOPENAI",
-  "original_text": "[{“question”:”Clean or change the filter as needed”,”response”:”Done”},{“question:”Confirm CMR controller working”, ”response”:”Checked and working ok, confirmed that the air flow is as expected. Flow is 5 m3/s and the fan speed is 76%. No fluctuations seen and that confirms that the cmr controller is behaving as expected”},{“question”:”Clean the frost coil if needed”,“response”:”Done”}]",
+  "original_text": "[\n{“question”:”Clean or change the filter as needed”,”response”:”Done”},\n{“question:”Confirm CMR controller working”, ”response”:”Checked and working ok, confirmed that the air flow is as expected. Flow is 5 m3/s and the fan speed is 76%. No fluctuations seen and that confirms that the cmr controller is behaving as expected”},\n{“question”:”Clean the frost coil if needed”,“response”:”Done”}\n]",
   "variables": {
     "asset_class": "Air Handling Unit",
     "month": "1M",

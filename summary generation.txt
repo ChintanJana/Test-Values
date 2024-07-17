@@ -75,6 +75,7 @@ Perform the following steps to try and resolve this issue:\n
 create_prompt:
 {
   "service_name": "PPMDQOPENAI",
+  "included_recognizer": [],
   "excluded_recognizer": ["DATE_TIME"],
   "structure": "Context: In the Data you will get a question and response as part of the maintenance checklist for the {asset_class}t and it is a {month} maintenance schedule \n\n Ask: Analyse the response as a {role} to provide data quality assessment for each question. Reward of responses should be on the basis of \n\nClarity- \n\nreward when - response is clear in respect to question, provides clarity on action / steps taken, Penalise when - only mention done/ checked, no details made available, 0 Score- when the response is marked as done / checked and is not conclusive at all\n\nMeasurement \n\nReward when - Mention of measurements / units of measurements., Mention of variables and values get rewarded highest, else there is partial reward, Penalise when- When no mention of variables or measurements (numbers, units of measurement), \n\nKnowledge \n\n Reward when Description on the decision making background and the details of why something was done should be there for it to be rewarded, Penalise when - If the response does not provide any knowledge / learning / insights to improve reliability, 0 Score- when the response is marked as done / checked and is not conclusive at all. \n\nEach assessment criteria can have a max score of 1 and min score of 0 \n\nOutput: \n\n Json, question, score of each assessment criteria and a brief summary of the ways in which quality can be improved for each question. Keep it brief. \n\nData\n{data}",
 
@@ -95,7 +96,7 @@ generate_summary:
   "facility_id": "5eb7cf5a86d9755df3a6c593",
   "asset_id": "5eb7cf5a86d9755df3a6c593",
   "user_id": "5eb7cf5a86d9755df3a6c593",
-  "service_name": "PPMDQAPI",
+  "service_name": "PPMDQOPENAI",
   "original_text": "[{“question”:”Clean or change the filter as needed”,”response”:”Done”},{“question:”Confirm CMR controller working”, ”response”:”Checked and working ok, confirmed that the air flow is as expected. Flow is 5 m3/s and the fan speed is 76%. No fluctuations seen and that confirms that the cmr controller is behaving as expected”},{“question”:”Clean the frost coil if needed”,“response”:”Done”}]",
   "variables": {
     "asset_class": "Air Handling Unit",

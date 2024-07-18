@@ -1,0 +1,5 @@
+{
+  "text": "John Doe has a phone number which is 123-456-7890 and his email is john.doe@example.com. He has an appointment on 2024-07-05 at 10:00 AM. with Martin.",
+  "included_recognizer": ["PHONE_NUMBER", "EMAIL_ADDRESS"],
+  "excluded_recognizer": ["DATE_TIME"]
+}
